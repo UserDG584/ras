@@ -12,31 +12,36 @@
 
 <h2>Customer Info</h2>
 <div class="section">
-  <label>Name:</label>
+  <label>Name *</label>
   <input type="text" id="name" required>
 
-  <label>Mobile / Telephone / Email:</label>
-  <input type="text" id="contact" required>
+  <label>Email *</label>
+  <input type="email" id="email" required>
 
-  <label>Address / What3Words:</label>
-  <input type="text" id="address" required>
+  <label>Phone</label>
+  <input type="text" id="phone">
+
+  <label>Address / What3Words</label>
+  <input type="text" id="address">
 </div>
 
 <h2>Your Property</h2>
 <div class="section">
 
-  <label>5. Property Type</label>
+  <label>Property Type</label>
   <select id="propertyType">
+    <option value="">--Select--</option>
     <option>Terraced</option>
     <option>Semi-detached</option>
     <option>Detached</option>
   </select>
 
-  <label>6. Number of windows</label>
+  <label>Number of windows</label>
   <input type="number" id="windows">
 
-  <label>Window size/type</label>
+  <label>Window type</label>
   <select id="windowType">
+    <option value="">--Select--</option>
     <option>Small panes</option>
     <option>Medium panes</option>
     <option>Large panes</option>
@@ -47,52 +52,57 @@
 
   <label>Roof windows?</label>
   <select id="roofWindows">
+    <option value="">--Select--</option>
     <option>Yes</option>
     <option>No</option>
   </select>
 
-  <label>Other glass (balcony etc)?</label>
+  <label>Other glass</label>
   <input type="text" id="otherGlass">
 
-  <label>Access difficulty</label>
+  <label>Access</label>
   <select id="access">
+    <option value="">--Select--</option>
     <option>Easy access</option>
     <option>Ladders required</option>
     <option>Scaffold required</option>
   </select>
 
-  <label>7. What needs cleaning?</label>
+  <label>Cleaning type</label>
   <select id="cleaningType">
+    <option value="">--Select--</option>
     <option>Outside windows</option>
     <option>Outside windows and glass doors</option>
     <option>Inside and outside of windows</option>
     <option>Inside and outside of windows and glass doors</option>
   </select>
 
-  <label>8. Extras</label>
+  <label>Extras</label>
   <select id="extras">
+    <option value="">--Select--</option>
     <option>None</option>
     <option>Window frames</option>
     <option>Sills</option>
     <option>Fascias</option>
     <option>Soffits</option>
     <option>Non-glass doors</option>
-    <option>One extra area (small conservatory/skylights/balcony panels)</option>
-    <option>Large conservatory / multiple skylights / large balcony panels</option>
-    <option>Extra work on frames</option>
+    <option>Small conservatory / skylights / balcony</option>
+    <option>Large conservatory / multiple skylights</option>
+    <option>Extra frame work</option>
   </select>
 
-  <label>9. Last cleaned</label>
+  <label>Last cleaned</label>
   <input type="date" id="lastCleaned">
 
-  <label>10. Frequency</label>
+  <label>Frequency</label>
   <select id="frequency">
-    <option>Intensive one-off clean</option>
+    <option value="">--Select--</option>
+    <option>Intensive one-off</option>
     <option>One-off clean</option>
-    <option>Regular every 4 weeks</option>
-    <option>Regular every 6 weeks</option>
-    <option>Regular every 8 weeks</option>
-    <option>Regular every 12 weeks</option>
+    <option>Every 4 weeks</option>
+    <option>Every 6 weeks</option>
+    <option>Every 8 weeks</option>
+    <option>Every 12 weeks</option>
   </select>
 
 </div>
@@ -100,30 +110,54 @@
 <button onclick="submitForm()">Submit</button>
 
 <script>
-function submitForm() {
+function valOrNA(v){ return v && v.trim() !== "" ? v : "N/A"; }
+
+function submitForm(){
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim();
+
+  if(!name || !email){
+    alert("Name and Email are required");
+    return;
+  }
+
+  const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  if(!emailValid){
+    alert("Enter a valid email");
+    return;
+  }
+
   const data = {
-    name: document.getElementById("name").value,
-    contact: document.getElementById("contact").value,
-    address: document.getElementById("address").value,
-    propertyType: document.getElementById("propertyType").value,
-    windows: document.getElementById("windows").value,
-    windowType: document.getElementById("windowType").value,
-    storeys: document.getElementById("storeys").value,
-    roofWindows: document.getElementById("roofWindows").value,
-    otherGlass: document.getElementById("otherGlass").value,
-    access: document.getElementById("access").value,
-    cleaningType: document.getElementById("cleaningType").value,
-    extras: document.getElementById("extras").value,
-    lastCleaned: document.getElementById("lastCleaned").value,
-    frequency: document.getElementById("frequency").value
+    name,
+    email,
+    phone: valOrNA(document.getElementById("phone").value),
+    address: valOrNA(document.getElementById("address").value),
+    propertyType: valOrNA(propertyType.value),
+    windows: valOrNA(windows.value),
+    windowType: valOrNA(windowType.value),
+    storeys: valOrNA(storeys.value),
+    roofWindows: valOrNA(roofWindows.value),
+    otherGlass: valOrNA(otherGlass.value),
+    access: valOrNA(access.value),
+    cleaningType: valOrNA(cleaningType.value),
+    extras: valOrNA(extras.value),
+    lastCleaned: valOrNA(lastCleaned.value),
+    frequency: valOrNA(frequency.value)
   };
 
-  fetch("https://script.google.com/macros/s/AKfycbwCd8Wws-wEa6wuLR9RQ82mYXVeWr_MsyIymU1nMUEfQiXSGKSnVJLyUGNS3RU_xaWneg/exec", {
-    method: "POST",
+  fetch("YOUR_DEPLOYED_SCRIPT_URL", {
+    method:"POST",
     body: JSON.stringify(data)
-  });
-
-  alert("Submitted successfully!");
+  })
+  .then(res=>res.json())
+  .then(res=>{
+    if(res.status==="duplicate"){
+      alert("Duplicate property submission detected.");
+    } else {
+      alert("Submitted successfully!");
+    }
+  })
+  .catch(()=>alert("Error submitting"));
 }
 </script>
 
