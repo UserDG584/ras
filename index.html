@@ -1,175 +1,163 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Property Cleaning Survey</title>
+  <title>Customer Cleaning Survey</title>
   <style>
     body { font-family: Arial; margin: 20px; }
-    .section { margin-bottom: 20px; padding: 10px; border: 1px solid #ccc; }
-    label { display: block; margin-top: 10px; }
+    h2 { margin-top: 30px; }
+    input, select, textarea {
+      width: 100%;
+      padding: 8px;
+      margin: 5px 0 15px 0;
+    }
+    fieldset { margin-bottom: 20px; padding: 15px; }
+    label { font-weight: bold; }
+    button {
+      padding: 10px 20px;
+      background: green;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
   </style>
 </head>
+
 <body>
 
-<h2>Customer Info</h2>
-<div class="section">
-  <label>Name *</label>
-  <input type="text" id="name" required>
+<h1>Customer Cleaning Survey Form</h1>
 
-  <label>Email *</label>
-  <input type="email" id="email" required>
+<form id="surveyForm">
 
-  <label>Phone</label>
-  <input type="text" id="phone">
+<!-- YOUR DETAILS -->
+<h2>Your Details</h2>
 
-  <label>Address / What3Words</label>
-  <input type="text" id="address">
-</div>
+<label>Name *</label>
+<input type="text" id="name" required>
 
+<label>Telephone Number *</label>
+<input type="tel" id="phone" required>
+
+<label>Email Address *</label>
+<input type="email" id="email" required>
+
+<label>Location (Full Address + Postcode / What3Words) *</label>
+<textarea id="location" required></textarea>
+
+<!-- PROPERTY -->
 <h2>Your Property</h2>
-<div class="section">
 
-  <label>Property Type</label>
-  <select id="propertyType">
-    <option value="">--Select--</option>
-    <option>Terraced</option>
-    <option>Semi-detached</option>
-    <option>Detached</option>
-  </select>
+<label>Property Type *</label>
+<select id="propertyType" required>
+  <option value="">Select</option>
+  <option>Terraced</option>
+  <option>Semi-detached</option>
+  <option>Detached</option>
+</select>
 
-  <label>Number of windows</label>
-  <input type="number" id="windows">
+<label>How many windows? *</label>
+<input type="number" id="windows" required>
 
-  <label>Window type</label>
-  <select id="windowType">
-    <option value="">--Select--</option>
-    <option>Small panes</option>
-    <option>Medium panes</option>
-    <option>Large panes</option>
-  </select>
+<label>Window type *</label>
+<input type="text" id="windowType" placeholder="Small / Medium / Large panes" required>
 
-  <label>Storeys</label>
-  <input type="text" id="storeys">
+<label>Number of storeys *</label>
+<input type="text" id="storeys" required>
 
-  <label>Roof windows?</label>
-  <select id="roofWindows">
-    <option value="">--Select--</option>
-    <option>Yes</option>
-    <option>No</option>
-  </select>
+<label>Roof windows?</label>
+<select id="roofWindows">
+  <option>No</option>
+  <option>Yes</option>
+</select>
 
-  <label>Other glass</label>
-  <input type="text" id="otherGlass">
+<label>Other glass (balcony etc)</label>
+<textarea id="otherGlass"></textarea>
 
-  <label>Access</label>
-  <select id="access">
-    <option value="">--Select--</option>
-    <option>Easy access</option>
-    <option>Ladders required</option>
-    <option>Scaffold required</option>
-  </select>
+<label>Are all windows easy to access?</label>
+<select id="access">
+  <option>Yes</option>
+  <option>No - ladders/scaffold required</option>
+</select>
 
-  <label>Cleaning type</label>
-  <select id="cleaningType">
-    <option value="">--Select--</option>
-    <option>Outside windows</option>
-    <option>Outside windows and glass doors</option>
-    <option>Inside and outside of windows</option>
-    <option>Inside and outside of windows and glass doors</option>
-  </select>
+<!-- CLEANING TYPE -->
+<h2>What needs cleaning?</h2>
+<select id="cleaningType" required>
+  <option value="">Select</option>
+  <option>Outside windows</option>
+  <option>Outside windows and glass doors</option>
+  <option>Inside and outside windows</option>
+  <option>Inside and outside windows + glass doors</option>
+</select>
 
-  <label>Extras</label>
-  <select id="extras">
-    <option value="">--Select--</option>
-    <option>None</option>
-    <option>Window frames</option>
-    <option>Sills</option>
-    <option>Fascias</option>
-    <option>Soffits</option>
-    <option>Non-glass doors</option>
-    <option>Small conservatory / skylights / balcony</option>
-    <option>Large conservatory / multiple skylights</option>
-    <option>Extra frame work</option>
-  </select>
+<!-- EXTRAS -->
+<h2>Extras (select one main option)</h2>
+<select id="extras">
+  <option>No extras</option>
+  <option>Facias</option>
+  <option>Soffits</option>
+  <option>Non-glass doors</option>
+  <option>One extra area (conservatory / skylights / balcony panels up to 3m)</option>
+  <option>Medium to large extras</option>
+  <option>Multiple skylights or balcony panels over 3m</option>
+</select>
 
-  <label>Last cleaned</label>
-  <input type="date" id="lastCleaned">
+<!-- LAST CLEANED -->
+<h2>Last Cleaning</h2>
+<textarea id="lastCleaned" placeholder="Describe when last cleaned"></textarea>
 
-  <label>Frequency</label>
-  <select id="frequency">
-    <option value="">--Select--</option>
-    <option>Intensive one-off</option>
-    <option>One-off clean</option>
-    <option>Every 4 weeks</option>
-    <option>Every 6 weeks</option>
-    <option>Every 8 weeks</option>
-    <option>Every 12 weeks</option>
-  </select>
+<!-- FREQUENCY -->
+<h2>Cleaning Frequency</h2>
+<select id="frequency">
+  <option>Intensive one-off clean (12+ months)</option>
+  <option>One-off clean (6–12 months)</option>
+  <option>Regular every 4 weeks</option>
+  <option>Regular every 6 weeks</option>
+  <option>Regular every 8 weeks</option>
+  <option>Regular every 12 weeks</option>
+</select>
 
-</div>
+<br><br>
+<button type="submit">Submit Form</button>
 
-<button onclick="submitForm()">Submit</button>
+</form>
 
 <script>
-function valOrNA(v){ return v && v.trim() !== "" ? v : "N/A"; }
+const endpoint = "https://script.google.com/macros/s/AKfycbwouDl6Ai9p3DHpGRGFMhuKeUrYf5YQCHcoD3B23B-2gTGKKaOMug7kECppD6w5da5PFQ/exec";
 
-function submitForm(){
-  const name = document.getElementById("name").value.trim();
-  const email = document.getElementById("email").value.trim();
+document.getElementById("surveyForm").addEventListener("submit", async function(e) {
+  e.preventDefault();
 
-  if(!name || !email){
-    alert("Name and Email are required");
-    return;
-  }
-
-  const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  if(!emailValid){
-    alert("Enter a valid email");
-    return;
+  function val(id) {
+    const v = document.getElementById(id).value.trim();
+    return v === "" ? "N/A" : v;
   }
 
   const data = {
-    name,
-    email,
-    phone: valOrNA(document.getElementById("phone").value),
-    address: valOrNA(document.getElementById("address").value),
-    propertyType: valOrNA(propertyType.value),
-    windows: valOrNA(windows.value),
-    windowType: valOrNA(windowType.value),
-    storeys: valOrNA(storeys.value),
-    roofWindows: valOrNA(roofWindows.value),
-    otherGlass: valOrNA(otherGlass.value),
-    access: valOrNA(access.value),
-    cleaningType: valOrNA(cleaningType.value),
-    extras: valOrNA(extras.value),
-    lastCleaned: valOrNA(lastCleaned.value),
-    frequency: valOrNA(frequency.value)
+    name: val("name"),
+    phone: val("phone"),
+    email: val("email"),
+    location: val("location"),
+    propertyType: val("propertyType"),
+    windows: val("windows"),
+    windowType: val("windowType"),
+    storeys: val("storeys"),
+    roofWindows: val("roofWindows"),
+    otherGlass: val("otherGlass"),
+    access: val("access"),
+    cleaningType: val("cleaningType"),
+    extras: val("extras"),
+    lastCleaned: val("lastCleaned"),
+    frequency: val("frequency")
   };
 
-  fetch("https://script.google.com/macros/s/AKfycbwouDl6Ai9p3DHpGRGFMhuKeUrYf5YQCHcoD3B23B-2gTGKKaOMug7kECppD6w5da5PFQ/exec", {
-   method: "POST",
-  body: JSON.stringify(data)
-})
-.then(res => res.text()) // <-- important
-.then(text => {
-  console.log("RAW RESPONSE:", text);
+  const res = await fetch(endpoint, {
+    method: "POST",
+    body: JSON.stringify(data)
+  });
 
-  let res;
-  try {
-    res = JSON.parse(text);
-  } catch {
-    alert("Server error (not JSON): " + text);
-    return;
-  }
-
-  if (res.status === "duplicate") {
-    alert("Duplicate property submission detected.");
-  } else if (res.status === "success") {
-    alert("Submitted successfully!");
-  } else {
-    alert("Error: " + res.message);
-  }
-})
-.catch(err => {
-  console.error(err);
-  alert("Network error");
+  const result = await res.text();
+  alert(result);
 });
+</script>
+
+</body>
+</html>
