@@ -1,17 +1,98 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <title>Window Cleaning Quote</title>
+  <style>
+    body {
+      font-family: Arial;
+      margin: 40px;
+    }
+    #formContainer {
+      display: none;
+      margin-top: 20px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      max-width: 500px;
+    }
+    button {
+      padding: 10px 15px;
+      cursor: pointer;
+    }
+    input, select {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+    }
+  </style>
 </head>
+
 <body>
-    
+
+<!-- LINK BUTTON -->
+<button onclick="showForm()">Book Quote Form</button>
+
+<!-- FORM -->
+<div id="formContainer">
+  <h2>Window Cleaning Quote</h2>
+
+  <form id="quoteForm">
+
+    <input type="text" name="name" placeholder="Full Name" required>
+    <input type="tel" name="phone" placeholder="Phone Number" required>
+    <input type="email" name="email" placeholder="Email">
+
+    <input type="text" name="address" placeholder="Address" required>
+
+    <label>Number of Windows</label>
+    <input type="number" name="windows">
+
+    <label>Floors</label>
+    <select name="floors">
+      <option>1</option>
+      <option>2</option>
+      <option>3+</option>
+    </select>
+
+    <label>Service Type</label>
+    <select name="service">
+      <option>Exterior Only</option>
+      <option>Inside & Outside</option>
+    </select>
+
+    <label>Preferred Date</label>
+    <input type="date" name="date">
+
+    <button type="submit">Submit Quote</button>
+
+  </form>
+
+  <p id="status"></p>
+</div>
+
+<script>
+function showForm() {
+  document.getElementById("formContainer").style.display = "block";
+}
+
+// SUBMIT TO GOOGLE SHEETS
+document.getElementById("quoteForm").addEventListener("submit", function(e){
+  e.preventDefault();
+
+  var formData = new FormData(this);
+
+  fetch("YOUR_SCRIPT_URL", {
+    method: "POST",
+    body: formData
+  })
+  .then(response => {
+    document.getElementById("status").innerHTML = "✅ Quote submitted!";
+    document.getElementById("quoteForm").reset();
+  })
+  .catch(error => {
+    document.getElementById("status").innerHTML = "❌ Error submitting form.";
+  });
+});
+</script>
+
 </body>
 </html>
-
-<img src="/images/Flyer_background.PNG" alt="flyer">
-
-<img src="images/Insta.PNG" alt="insta icon">
-
-<img src="images/Facebook.PNG" alt="facebook icon">
