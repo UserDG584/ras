@@ -1,204 +1,116 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
   <title>Property Cleaning Survey</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 40px;
-      background: #f5f5f5;
-    }
-
-    h2 {
-      margin-bottom: 20px;
-    }
-
-    .form-group {
-      margin-bottom: 15px;
-    }
-
-    label {
-      font-weight: bold;
-      display: block;
-      margin-bottom: 5px;
-    }
-
-    input, select {
-      width: 100%;
-      padding: 8px;
-      font-size: 14px;
-    }
-
-    button {
-      margin-top: 20px;
-      padding: 12px 20px;
-      background: #007BFF;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
+    body { font-family: Arial; margin: 20px; }
+    .section { margin-bottom: 20px; padding: 10px; border: 1px solid #ccc; }
+    label { display: block; margin-top: 10px; }
   </style>
 </head>
-
 <body>
 
-<h2>Property Cleaning Survey</h2>
+<h2>Customer Info</h2>
+<div class="section">
+  <label>Name:</label>
+  <input type="text" id="name" required>
 
-<form id="surveyForm">
+  <label>Mobile / Telephone / Email:</label>
+  <input type="text" id="contact" required>
 
-  <!-- CONTACT DETAILS -->
-  <div class="form-group">
-    <label>1. Name</label>
-    <input type="text" id="name" required>
-  </div>
+  <label>Address / What3Words:</label>
+  <input type="text" id="address" required>
+</div>
 
-  <div class="form-group">
-    <label>2. Email</label>
-    <input type="email" id="email" required>
-  </div>
+<h2>Your Property</h2>
+<div class="section">
 
-  <div class="form-group">
-    <label>3. Phone</label>
-    <input type="text" id="phone" required>
-  </div>
+  <label>5. Property Type</label>
+  <select id="propertyType">
+    <option>Terraced</option>
+    <option>Semi-detached</option>
+    <option>Detached</option>
+  </select>
 
-  <div class="form-group">
-    <label>4. Address</label>
-    <input type="text" id="address" required>
-  </div>
+  <label>6. Number of windows</label>
+  <input type="number" id="windows">
 
-  <!-- PROPERTY TYPE -->
-  <div class="form-group">
-    <label>5. What type of property needs cleaning?</label>
-    <select id="propertyType">
-      <option>Terraced</option>
-      <option>Semi-detached</option>
-      <option>Detached</option>
-    </select>
-  </div>
+  <label>Window size/type</label>
+  <select id="windowType">
+    <option>Small panes</option>
+    <option>Medium panes</option>
+    <option>Large panes</option>
+  </select>
 
-  <!-- WINDOW COUNT -->
-  <div class="form-group">
-    <label>6. How many windows are there?</label>
-    <input type="number" id="windowCount">
-  </div>
+  <label>Storeys</label>
+  <input type="text" id="storeys">
 
-  <!-- WINDOW TYPE -->
-  <div class="form-group">
-    <label>7. What type of windows are they?</label>
-    <select id="windowType">
-      <option>Small panes</option>
-      <option>Medium panes</option>
-      <option>Large panes</option>
-    </select>
-  </div>
+  <label>Roof windows?</label>
+  <select id="roofWindows">
+    <option>Yes</option>
+    <option>No</option>
+  </select>
 
-  <!-- STOREYS -->
-  <div class="form-group">
-    <label>8. How many storeys?</label>
-    <select id="storeys">
-      <option>1 (Ground floor)</option>
-      <option>2 (Ground + First)</option>
-      <option>3+</option>
-    </select>
-  </div>
+  <label>Other glass (balcony etc)?</label>
+  <input type="text" id="otherGlass">
 
-  <!-- ROOF WINDOWS -->
-  <div class="form-group">
-    <label>9. Are there any roof windows?</label>
-    <select id="roofWindows">
-      <option>Yes</option>
-      <option>No</option>
-    </select>
-  </div>
+  <label>Access difficulty</label>
+  <select id="access">
+    <option>Easy access</option>
+    <option>Ladders required</option>
+    <option>Scaffold required</option>
+  </select>
 
-  <!-- EXTRA GLASS -->
-  <div class="form-group">
-    <label>10. Is there any other glass (e.g. balcony)?</label>
-    <select id="extraGlass">
-      <option>Yes</option>
-      <option>No</option>
-    </select>
-  </div>
+  <label>7. What needs cleaning?</label>
+  <select id="cleaningType">
+    <option>Outside windows</option>
+    <option>Outside windows and glass doors</option>
+    <option>Inside and outside of windows</option>
+    <option>Inside and outside of windows and glass doors</option>
+  </select>
 
-  <!-- ACCESS -->
-  <div class="form-group">
-    <label>11. Are all windows easy to access?</label>
-    <select id="access">
-      <option>Yes</option>
-      <option>No (ladder/scaffold required)</option>
-    </select>
-  </div>
+  <label>8. Extras</label>
+  <select id="extras">
+    <option>None</option>
+    <option>Window frames</option>
+    <option>Sills</option>
+    <option>Fascias</option>
+    <option>Soffits</option>
+    <option>Non-glass doors</option>
+    <option>One extra area (small conservatory/skylights/balcony panels)</option>
+    <option>Large conservatory / multiple skylights / large balcony panels</option>
+    <option>Extra work on frames</option>
+  </select>
 
-  <!-- CLEANING TYPE -->
-  <div class="form-group">
-    <label>12. What needs cleaning this time?</label>
-    <select id="cleaningType">
-      <option>Outside windows</option>
-      <option>Outside windows and glass doors</option>
-      <option>Inside and outside of windows</option>
-      <option>Inside and outside of windows and glass doors</option>
-    </select>
-  </div>
+  <label>9. Last cleaned</label>
+  <input type="date" id="lastCleaned">
 
-  <!-- EXTRAS -->
-  <div class="form-group">
-    <label>13. Are there any extras to include?</label>
-    <select id="extras">
-      <option>No extras</option>
-      <option>Window frames</option>
-      <option>Sills</option>
-      <option>Fascias</option>
-      <option>Soffits</option>
-      <option>Non-glass doors</option>
-      <option>Conservatory / skylights / balcony</option>
-      <option>Extra frame work</option>
-    </select>
-  </div>
+  <label>10. Frequency</label>
+  <select id="frequency">
+    <option>Intensive one-off clean</option>
+    <option>One-off clean</option>
+    <option>Regular every 4 weeks</option>
+    <option>Regular every 6 weeks</option>
+    <option>Regular every 8 weeks</option>
+    <option>Regular every 12 weeks</option>
+  </select>
 
-  <!-- LAST CLEANED -->
-  <div class="form-group">
-    <label>14. When was your property last cleaned?</label>
-    <select id="lastCleaned">
-      <option>Less than 6 months</option>
-      <option>6–12 months</option>
-      <option>Over 12 months</option>
-    </select>
-  </div>
+</div>
 
-  <!-- FREQUENCY -->
-  <div class="form-group">
-    <label>15. How often would you like the clean?</label>
-    <select id="frequency">
-      <option>One-off clean</option>
-      <option>Every 4 weeks</option>
-      <option>Every 6 weeks</option>
-      <option>Every 8 weeks</option>
-      <option>Every 12 weeks</option>
-    </select>
-  </div>
-
-  <button type="submit">Submit Survey</button>
-
-</form>
+<button onclick="submitForm()">Submit</button>
 
 <script>
-document.getElementById("surveyForm").addEventListener("submit", function(e) {
-  e.preventDefault();
-
+function submitForm() {
   const data = {
     name: document.getElementById("name").value,
-    email: document.getElementById("email").value,
-    phone: document.getElementById("phone").value,
+    contact: document.getElementById("contact").value,
     address: document.getElementById("address").value,
-
     propertyType: document.getElementById("propertyType").value,
-    windowCount: document.getElementById("windowCount").value,
+    windows: document.getElementById("windows").value,
     windowType: document.getElementById("windowType").value,
     storeys: document.getElementById("storeys").value,
     roofWindows: document.getElementById("roofWindows").value,
-    extraGlass: document.getElementById("extraGlass").value,
+    otherGlass: document.getElementById("otherGlass").value,
     access: document.getElementById("access").value,
     cleaningType: document.getElementById("cleaningType").value,
     extras: document.getElementById("extras").value,
@@ -206,19 +118,13 @@ document.getElementById("surveyForm").addEventListener("submit", function(e) {
     frequency: document.getElementById("frequency").value
   };
 
-  fetch("YOUR_WEB_APP_URL_HERE", {
+  fetch("YOUR_GOOGLE_SCRIPT_URL", {
     method: "POST",
     body: JSON.stringify(data)
-  })
-  .then(() => {
-    alert("Survey submitted successfully!");
-    document.getElementById("surveyForm").reset();
-  })
-  .catch(err => {
-    alert("Error submitting form");
-    console.error(err);
   });
-});
+
+  alert("Submitted successfully!");
+}
 </script>
 
 </body>
