@@ -145,7 +145,7 @@ function submitForm(){
     frequency: valOrNA(frequency.value)
   };
 
-  fetch("YOUR_DEPLOYED_SCRIPT_URL", {
+  fetch("https://script.google.com/macros/s/AKfycbwouDl6Ai9p3DHpGRGFMhuKeUrYf5YQCHcoD3B23B-2gTGKKaOMug7kECppD6w5da5PFQ/exec", {
     method:"POST",
     body: JSON.stringify(data)
   })
