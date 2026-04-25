@@ -118,7 +118,7 @@ function submitForm() {
     frequency: document.getElementById("frequency").value
   };
 
-  fetch("YOUR_GOOGLE_SCRIPT_URL", {
+  fetch("https://script.google.com/macros/s/AKfycbwCd8Wws-wEa6wuLR9RQ82mYXVeWr_MsyIymU1nMUEfQiXSGKSnVJLyUGNS3RU_xaWneg/exec", {
     method: "POST",
     body: JSON.stringify(data)
   });
