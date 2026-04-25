@@ -149,15 +149,24 @@ document.getElementById("surveyForm").addEventListener("submit", async function(
     frequency: val("frequency")
   };
 
-  const res = await fetch(endpoint, {
-    method: "POST",
-    body: JSON.stringify(data)
-  });
+  try {
+    const res = await fetch(endpoint, {
+      method: "POST",
+      body: JSON.stringify(data)
+    });
 
-  const result = await res.text();
-  alert(result);
+    const result = await res.json();
+
+    if (result.status === "success") {
+      // ✅ REDIRECT
+      window.location.href = "thankyou.html";
+    } else {
+      alert("Something went wrong. Please try again.");
+    }
+
+  } catch (err) {
+    alert("Error submitting form.");
+  }
 });
 </script>
-
-</body>
 </html>
