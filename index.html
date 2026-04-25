@@ -1,72 +1,157 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Window Cleaning Quote</title>
-  <style>
-    body {
-      font-family: Arial;
-      margin: 40px;
-    }
-    #formContainer {
-      display: none;
-      margin-top: 20px;
-      padding: 20px;
-      border: 1px solid #ccc;
-      max-width: 500px;
-    }
-    button {
-      padding: 10px 15px;
-      cursor: pointer;
-    }
-    input, select {
-      width: 100%;
-      padding: 8px;
-      margin-bottom: 10px;
-    }
-  </style>
+<title>Window Cleaning Quote</title>
+
+<style>
+body { font-family: Arial; margin: 40px; }
+#formContainer {
+  display: none;
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  max-width: 600px;
+}
+button { padding: 10px 15px; cursor: pointer; }
+input, select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 12px;
+}
+h3 { margin-top: 25px; }
+</style>
+
 </head>
 
 <body>
 
-<!-- LINK BUTTON -->
 <button onclick="showForm()">Book Quote Form</button>
 
-<!-- FORM -->
 <div id="formContainer">
-  <h2>Window Cleaning Quote</h2>
+<h2>Window Cleaning Quote</h2>
 
-  <form id="quoteForm">
+<form id="quoteForm">
 
-    <input type="text" name="name" placeholder="Full Name" required>
-    <input type="tel" name="phone" placeholder="Phone Number" required>
-    <input type="email" name="email" placeholder="Email">
+<!-- PERSONAL INFO -->
+<h3>Your Details</h3>
+<input type="text" name="name" placeholder="Full Name" required>
+<input type="tel" name="phone" placeholder="Phone Number" required>
+<input type="email" name="email" placeholder="Email">
+<input type="text" name="address" placeholder="Address" required>
 
-    <input type="text" name="address" placeholder="Address" required>
+<!-- PROPERTY TYPE -->
+<h3>Your Property</h3>
+<label>What type of property needs cleaning?</label>
+<select name="propertyType">
+  <option>Terraced</option>
+  <option>Semi-detached</option>
+  <option>Detached</option>
+</select>
 
-    <label>Number of Windows</label>
-    <input type="number" name="windows">
+<!-- PROPERTY DETAILS -->
+<h3>Property Details</h3>
 
-    <label>Floors</label>
-    <select name="floors">
-      <option>1</option>
-      <option>2</option>
-      <option>3+</option>
-    </select>
+<label>How many windows are there?</label>
+<select name="windows">
+  <option>1-5</option>
+  <option>6-10</option>
+  <option>11-20</option>
+  <option>20+</option>
+</select>
 
-    <label>Service Type</label>
-    <select name="service">
-      <option>Exterior Only</option>
-      <option>Inside & Outside</option>
-    </select>
+<label>What types of windows?</label>
+<select name="windowType">
+  <option>Small panes</option>
+  <option>Medium panes</option>
+  <option>Large panes</option>
+  <option>Mixed</option>
+</select>
 
-    <label>Preferred Date</label>
-    <input type="date" name="date">
+<label>How many storeys?</label>
+<select name="storeys">
+  <option>1 (Ground floor)</option>
+  <option>2 (First floor)</option>
+  <option>3+</option>
+</select>
 
-    <button type="submit">Submit Quote</button>
+<label>Are there roof windows?</label>
+<select name="roofWindows">
+  <option>No</option>
+  <option>Yes - 1-2</option>
+  <option>Yes - 3+</option>
+</select>
 
-  </form>
+<label>Is there any other glass (e.g. balcony)?</label>
+<select name="extraGlass">
+  <option>No</option>
+  <option>Glass balcony</option>
+  <option>Conservatory</option>
+  <option>Other</option>
+</select>
 
-  <p id="status"></p>
+<label>Are all windows easy to access?</label>
+<select name="access">
+  <option>Yes - easy access</option>
+  <option>Some require ladders</option>
+  <option>Scaffolding required</option>
+</select>
+
+<!-- CLEANING TYPE -->
+<h3>What needs cleaning?</h3>
+
+<select name="cleaningType">
+  <option>Outside windows</option>
+  <option>Outside windows & glass doors</option>
+  <option>Inside & outside windows</option>
+  <option>Inside & outside windows & glass doors</option>
+</select>
+
+<!-- EXTRAS -->
+<h3>Extras</h3>
+
+<label>Select extras</label>
+<select name="extras">
+  <option>No extras</option>
+  <option>Window frames</option>
+  <option>Sills</option>
+  <option>Fascias</option>
+  <option>Soffits</option>
+  <option>Non-glass doors</option>
+  <option>Small conservatory / skylights (up to 3)</option>
+  <option>Large conservatory / multiple skylights</option>
+  <option>Extra frame work</option>
+</select>
+
+<!-- CLEANING HISTORY -->
+<h3>Cleaning History</h3>
+
+<label>When was your property last cleaned?</label>
+<select name="lastCleaned">
+  <option>Less than 6 months ago</option>
+  <option>6–12 months ago</option>
+  <option>Over 12 months ago</option>
+</select>
+
+<label>How often would you like cleaning?</label>
+<select name="frequency">
+  <option>One-off intensive clean</option>
+  <option>One-off standard clean</option>
+  <option>Every 4 weeks</option>
+  <option>Every 6 weeks</option>
+  <option>Every 8 weeks</option>
+  <option>Every 12 weeks</option>
+</select>
+
+<!-- DATE -->
+<h3>Schedule</h3>
+<label>Preferred Date</label>
+<input type="date" name="date">
+
+<button type="submit">Submit Quote</button>
+
+</form>
+
+<p id="status"></p>
 </div>
 
 <script>
@@ -74,7 +159,6 @@ function showForm() {
   document.getElementById("formContainer").style.display = "block";
 }
 
-// SUBMIT TO GOOGLE SHEETS
 document.getElementById("quoteForm").addEventListener("submit", function(e){
   e.preventDefault();
 
