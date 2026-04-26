@@ -6,7 +6,7 @@
     body {
       font-family: Arial;
       margin: 20px;
-      max-width: 600px;
+      max-width: 650px;
     }
 
     h1, h2 {
@@ -27,17 +27,17 @@
     .checkbox-group label {
       display: block;
       font-weight: normal;
-      margin-bottom: 5px;
+      margin: 5px 0;
     }
 
     button {
-      padding: 12px;
       width: 100%;
+      padding: 14px;
       background: green;
       color: white;
       border: none;
-      cursor: pointer;
       font-size: 16px;
+      cursor: pointer;
     }
   </style>
 </head>
@@ -48,239 +48,99 @@
 
 <form id="surveyForm">
 
-  <!-- YOUR DETAILS -->
-  <h2>Your Details</h2>
+<!-- DETAILS -->
+<h2>Your Details</h2>
 
-  <label>Full Name *</label>
-  <input id="name" required>
+<label>Full Name *</label>
+<input id="name" required>
 
-  <label>Phone Number *</label>
-  <input id="phone" required>
+<label>Phone Number *</label>
+<input id="phone" required>
 
-  <label>Email *</label>
-  <input id="email" type="email" required>
+<label>Email *</label>
+<input id="email" type="email" required>
 
-  <label>Address *</label>
-  <textarea id="location" required></textarea>
+<label>Address *</label>
+<textarea id="location" required></textarea>
 
-  <!-- PROPERTY -->
-  <h2>Your Property</h2>
+<!-- PROPERTY -->
+<h2>Your Property</h2>
 
-  <label>Property Type *</label>
-  <select id="propertyType">
-    <option>Terraced</option>
-    <option>Semi-detached</option>
-    <option>Detached</option>
-  </select>
+<label>Property Type *</label>
+<select id="propertyType">
+  <option>Terraced</option>
+  <option>Semi-detached</option>
+  <option>Detached</option>
+</select>
 
-  <label>Number of Windows *</label>
-  <input id="windows" type="number">
+<label>Number of Windows *</label>
+<input id="windows" type="number">
 
-  <label>Window Pane Type *</label>
-  <select id="windowType">
-    <option>Small</option>
-    <option>Medium</option>
-    <option>Large</option>
-  </select>
+<label>Window Pane Type *</label>
+<select id="windowType">
+  <option>Small</option>
+  <option>Medium</option>
+  <option>Large</option>
+</select>
 
-  <label>Floors *</label>
-  <input id="storeys">
+<label>Floors *</label>
+<input id="storeys">
 
-  <label>Roof Windows</label>
-  <select id="roofWindows">
-    <option>No</option>
-    <option>Yes</option>
-  </select>
+<label>Roof Windows</label>
+<select id="roofWindows">
+  <option>No</option>
+  <option>Yes</option>
+</select>
 
-  <label>Other Glass</label>
-  <textarea id="otherGlass"></textarea>
+<label>Other Glass</label>
+<textarea id="otherGlass"></textarea>
 
-  <label>Easy Access?</label>
-  <select id="access">
-    <option>Yes</option>
-    <option>No</option>
-  </select>
+<label>Easy Access?</label>
+<select id="access">
+  <option>Yes</option>
+  <option>No</option>
+</select>
 
-  <!-- CLEANING -->
-  <h2>Your Cleaning Type</h2>
+<!-- CLEANING -->
+<h2>Your Cleaning Type</h2>
 
-  <select id="cleaningType">
-    <option>Outside windows</option>
-    <option>Outside windows and glass doors</option>
-    <option>Inside and outside windows</option>
-    <option>Inside and outside windows + glass doors</option>
-  </select>
+<select id="cleaningType">
+  <option>Outside windows</option>
+  <option>Outside windows and glass doors</option>
+  <option>Inside and outside windows</option>
+  <option>Inside and outside windows + glass doors</option>
+</select>
 
-  <!-- EXTRAS -->
-  <h2>Extras</h2>
+<!-- EXTRAS -->
+<h2>Extras</h2>
 
-  <div class="checkbox-group">
-    <label><input type="checkbox" name="extras" value="Soffits"> Soffits</label>
-    <label><input type="checkbox" name="extras" value="Facias"> Facias</label>
-    <label><input type="checkbox" name="extras" value="Gutters"> Gutters</label>
-    <label><input type="checkbox" name="extras" value="Solar Panels"> Solar Panels</label>
-    <label><input type="checkbox" name="extras" value="None"> None</label>
-  </div>
+<div class="checkbox-group">
+  <label><input type="checkbox" name="extras" value="Soffits"> Soffits</label>
+  <label><input type="checkbox" name="extras" value="Facias"> Facias</label>
+  <label><input type="checkbox" name="extras" value="Gutters"> Gutters</label>
+  <label><input type="checkbox" name="extras" value="Solar Panels"> Solar Panels</label>
+  <label><input type="checkbox" name="extras" value="None"> None</label>
+</div>
 
-  <!-- HISTORY -->
-  <h2>When was your property last cleaned?</h2>
-  <textarea id="lastCleaned"></textarea>
+<!-- PREVIOUS CLEAN -->
+<h2>When was your property last cleaned?</h2>
+<textarea id="lastCleaned"></textarea>
 
-  <!-- FREQUENCY -->
-  <h2>Frequency</h2>
-  <select id="frequency">
-    <option>Every 4 weeks</option>
-    <option>Every 6 weeks</option>
-    <option>Every 8 weeks</option>
-    <option>Every 12 weeks</option>
-  </select>
+<!-- FREQUENCY -->
+<h2>Frequency</h2>
 
-  <button type="submit">Submit</button>
+<select id="frequency">
+  <option>Every 4 weeks</option>
+  <option>Every 6 weeks</option>
+  <option>Every 8 weeks</option>
+  <option>Every 12 weeks</option>
+</select>
 
-</form>
-
-<script>
-const endpoint = "<!DOCTYPE html>
-<html>
-<head>
-  <title>Cleaning Survey Form</title>
-  <style>
-    body {
-      font-family: Arial;
-      margin: 20px;
-      max-width: 600px;
-    }
-
-    h1, h2 {
-      margin-top: 25px;
-    }
-
-    input, select, textarea {
-      width: 100%;
-      padding: 10px;
-      margin: 8px 0 15px;
-      box-sizing: border-box;
-    }
-
-    label {
-      font-weight: bold;
-    }
-
-    .checkbox-group label {
-      display: block;
-      font-weight: normal;
-      margin-bottom: 5px;
-    }
-
-    button {
-      padding: 12px;
-      width: 100%;
-      background: green;
-      color: white;
-      border: none;
-      cursor: pointer;
-      font-size: 16px;
-    }
-  </style>
-</head>
-
-<body>
-
-<h1>Cleaning Survey Form</h1>
-
-<form id="surveyForm">
-
-  <!-- YOUR DETAILS -->
-  <h2>Your Details</h2>
-
-  <label>Full Name *</label>
-  <input id="name" required>
-
-  <label>Phone Number *</label>
-  <input id="phone" required>
-
-  <label>Email *</label>
-  <input id="email" type="email" required>
-
-  <label>Address *</label>
-  <textarea id="location" required></textarea>
-
-  <!-- PROPERTY -->
-  <h2>Your Property</h2>
-
-  <label>Property Type *</label>
-  <select id="propertyType">
-    <option>Terraced</option>
-    <option>Semi-detached</option>
-    <option>Detached</option>
-  </select>
-
-  <label>Number of Windows *</label>
-  <input id="windows" type="number">
-
-  <label>Window Pane Type *</label>
-  <select id="windowType">
-    <option>Small</option>
-    <option>Medium</option>
-    <option>Large</option>
-  </select>
-
-  <label>Floors *</label>
-  <input id="storeys">
-
-  <label>Roof Windows</label>
-  <select id="roofWindows">
-    <option>No</option>
-    <option>Yes</option>
-  </select>
-
-  <label>Other Glass</label>
-  <textarea id="otherGlass"></textarea>
-
-  <label>Easy Access?</label>
-  <select id="access">
-    <option>Yes</option>
-    <option>No</option>
-  </select>
-
-  <!-- CLEANING -->
-  <h2>Your Cleaning Type</h2>
-
-  <select id="cleaningType">
-    <option>Outside windows</option>
-    <option>Outside windows and glass doors</option>
-    <option>Inside and outside windows</option>
-    <option>Inside and outside windows + glass doors</option>
-  </select>
-
-  <!-- EXTRAS -->
-  <h2>Extras</h2>
-
-  <div class="checkbox-group">
-    <label><input type="checkbox" name="extras" value="Soffits"> Soffits</label>
-    <label><input type="checkbox" name="extras" value="Facias"> Facias</label>
-    <label><input type="checkbox" name="extras" value="Gutters"> Gutters</label>
-    <label><input type="checkbox" name="extras" value="Solar Panels"> Solar Panels</label>
-    <label><input type="checkbox" name="extras" value="None"> None</label>
-  </div>
-
-  <!-- HISTORY -->
-  <h2>When was your property last cleaned?</h2>
-  <textarea id="lastCleaned"></textarea>
-
-  <!-- FREQUENCY -->
-  <h2>Frequency</h2>
-  <select id="frequency">
-    <option>Every 4 weeks</option>
-    <option>Every 6 weeks</option>
-    <option>Every 8 weeks</option>
-    <option>Every 12 weeks</option>
-  </select>
-
-  <button type="submit">Submit</button>
+<button type="submit">Submit</button>
 
 </form>
 
+<!-- SCRIPT -->
 <script>
 const endpoint = "https://script.google.com/macros/s/AKfycbxKQIBlwnieqkoqFRWBEYGRD8Afu08soCiz28Jed2P4SOP24oCWw1Ot1zq3FhMsmTHxIA/exec";
 
@@ -311,61 +171,16 @@ document.getElementById("surveyForm").addEventListener("submit", async function(
   try {
     const res = await fetch(endpoint, {
       method: "POST",
-      body: JSON.stringify(data)
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json"
+      }
     });
 
     const result = await res.json();
 
     if (result.status === "success") {
-      window.location.href = "thankyou.html";
-    } else {
-      alert("Submission failed");
-    }
-
-  } catch (err) {
-    alert("Error submitting form");
-  }
-});
-</script>
-
-</body>
-</html>
-";
-
-document.getElementById("surveyForm").addEventListener("submit", async function(e) {
-  e.preventDefault();
-
-  const extrasChecked = [...document.querySelectorAll('input[name="extras"]:checked')]
-    .map(el => el.value);
-
-  const data = {
-    name: name.value,
-    phone: phone.value,
-    email: email.value,
-    location: location.value,
-    propertyType: propertyType.value,
-    windows: windows.value,
-    windowType: windowType.value,
-    storeys: storeys.value,
-    roofWindows: roofWindows.value,
-    otherGlass: otherGlass.value,
-    access: access.value,
-    cleaningType: cleaningType.value,
-    extras: extrasChecked,
-    lastCleaned: lastCleaned.value,
-    frequency: frequency.value
-  };
-
-  try {
-    const res = await fetch(endpoint, {
-      method: "POST",
-      body: JSON.stringify(data)
-    });
-
-    const result = await res.json();
-
-    if (result.status === "success") {
-      window.location.href = "thankyou.html";
+      document.body.innerHTML = "<h1>Submission complete</h1>";
     } else {
       alert("Submission failed");
     }
