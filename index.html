@@ -1,20 +1,43 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Customer Cleaning Survey</title>
+  <title>Cleaning Survey Form</title>
   <style>
-    body { font-family: Arial; margin: 20px; }
+    body {
+      font-family: Arial;
+      margin: 20px;
+      max-width: 600px;
+    }
+
+    h1, h2 {
+      margin-top: 25px;
+    }
+
     input, select, textarea {
       width: 100%;
-      padding: 8px;
-      margin: 6px 0 15px 0;
+      padding: 10px;
+      margin: 8px 0 15px;
+      box-sizing: border-box;
     }
+
+    label {
+      font-weight: bold;
+    }
+
+    .checkbox-group label {
+      display: block;
+      font-weight: normal;
+      margin-bottom: 5px;
+    }
+
     button {
       padding: 12px;
+      width: 100%;
       background: green;
       color: white;
       border: none;
       cursor: pointer;
+      font-size: 16px;
     }
   </style>
 </head>
@@ -25,66 +48,94 @@
 
 <form id="surveyForm">
 
-<h2>Your Details</h2>
+  <!-- YOUR DETAILS -->
+  <h2>Your Details</h2>
 
-<input id="name" placeholder="Full Name" required>
-<input id="phone" placeholder="Phone" required>
-<input id="email" placeholder="Email" required>
-<textarea id="location" placeholder="Full Address + Postcode" required></textarea>
+  <label>Full Name *</label>
+  <input id="name" required>
 
-<h2>Property</h2>
+  <label>Phone Number *</label>
+  <input id="phone" required>
 
-<select id="propertyType" required>
-  <option>Terraced</option>
-  <option>Semi-detached</option>
-  <option>Detached</option>
-</select>
+  <label>Email *</label>
+  <input id="email" type="email" required>
 
-<input id="windows" placeholder="Number of Windows" required>
-<input id="windowType" placeholder="Window Type" required>
-<input id="storeys" placeholder="Floors" required>
+  <label>Address *</label>
+  <textarea id="location" required></textarea>
 
-<select id="roofWindows">
-  <option>No</option>
-  <option>Yes</option>
-</select>
+  <!-- PROPERTY -->
+  <h2>Your Property</h2>
 
-<textarea id="otherGlass" placeholder="Other Glass"></textarea>
+  <label>Property Type *</label>
+  <select id="propertyType">
+    <option>Terraced</option>
+    <option>Semi-detached</option>
+    <option>Detached</option>
+  </select>
 
-<select id="access">
-  <option>Yes</option>
-  <option>No</option>
-</select>
+  <label>Number of Windows *</label>
+  <input id="windows" type="number">
 
-<h2>Cleaning Type</h2>
-<select id="cleaningType">
-  <option>Outside windows</option>
-  <option>Outside windows and glass doors</option>
-  <option>Inside and outside windows</option>
-  <option>Inside and outside windows + glass doors</option>
-</select>
+  <label>Window Pane Type *</label>
+  <select id="windowType">
+    <option>Small</option>
+    <option>Medium</option>
+    <option>Large</option>
+  </select>
 
-<h2>Extras</h2>
-<select id="extras">
-  <option>No extras</option>
-  <option>One extra area</option>
-  <option>Multiple skylights / balcony panels</option>
-</select>
+  <label>Floors *</label>
+  <input id="storeys">
 
-<h2>Last Cleaned</h2>
-<textarea id="lastCleaned"></textarea>
+  <label>Roof Windows</label>
+  <select id="roofWindows">
+    <option>No</option>
+    <option>Yes</option>
+  </select>
 
-<h2>Frequency</h2>
-<select id="frequency">
-  <option>12+ months</option>
-  <option>6–12 months</option>
-  <option>4 weeks</option>
-  <option>6 weeks</option>
-  <option>8 weeks</option>
-  <option>12 weeks</option>
-</select>
+  <label>Other Glass</label>
+  <textarea id="otherGlass"></textarea>
 
-<button type="submit">Submit</button>
+  <label>Easy Access?</label>
+  <select id="access">
+    <option>Yes</option>
+    <option>No</option>
+  </select>
+
+  <!-- CLEANING -->
+  <h2>Your Cleaning Type</h2>
+
+  <select id="cleaningType">
+    <option>Outside windows</option>
+    <option>Outside windows and glass doors</option>
+    <option>Inside and outside windows</option>
+    <option>Inside and outside windows + glass doors</option>
+  </select>
+
+  <!-- EXTRAS -->
+  <h2>Extras</h2>
+
+  <div class="checkbox-group">
+    <label><input type="checkbox" name="extras" value="Soffits"> Soffits</label>
+    <label><input type="checkbox" name="extras" value="Facias"> Facias</label>
+    <label><input type="checkbox" name="extras" value="Gutters"> Gutters</label>
+    <label><input type="checkbox" name="extras" value="Solar Panels"> Solar Panels</label>
+    <label><input type="checkbox" name="extras" value="None"> None</label>
+  </div>
+
+  <!-- HISTORY -->
+  <h2>When was your property last cleaned?</h2>
+  <textarea id="lastCleaned"></textarea>
+
+  <!-- FREQUENCY -->
+  <h2>Frequency</h2>
+  <select id="frequency">
+    <option>Every 4 weeks</option>
+    <option>Every 6 weeks</option>
+    <option>Every 8 weeks</option>
+    <option>Every 12 weeks</option>
+  </select>
+
+  <button type="submit">Submit</button>
 
 </form>
 
@@ -94,35 +145,43 @@ const endpoint = "https://script.google.com/macros/s/AKfycbwoNXyGFpG97MgdypxUON4
 document.getElementById("surveyForm").addEventListener("submit", async function(e) {
   e.preventDefault();
 
+  const extrasChecked = [...document.querySelectorAll('input[name="extras"]:checked')]
+    .map(el => el.value);
+
   const data = {
-    name: document.getElementById("name").value,
-    phone: document.getElementById("phone").value,
-    email: document.getElementById("email").value,
-    location: document.getElementById("location").value,
-    propertyType: document.getElementById("propertyType").value,
-    windows: document.getElementById("windows").value,
-    windowType: document.getElementById("windowType").value,
-    storeys: document.getElementById("storeys").value,
-    roofWindows: document.getElementById("roofWindows").value,
-    otherGlass: document.getElementById("otherGlass").value,
-    access: document.getElementById("access").value,
-    cleaningType: document.getElementById("cleaningType").value,
-    extras: document.getElementById("extras").value,
-    lastCleaned: document.getElementById("lastCleaned").value,
-    frequency: document.getElementById("frequency").value
+    name: name.value,
+    phone: phone.value,
+    email: email.value,
+    location: location.value,
+    propertyType: propertyType.value,
+    windows: windows.value,
+    windowType: windowType.value,
+    storeys: storeys.value,
+    roofWindows: roofWindows.value,
+    otherGlass: otherGlass.value,
+    access: access.value,
+    cleaningType: cleaningType.value,
+    extras: extrasChecked,
+    lastCleaned: lastCleaned.value,
+    frequency: frequency.value
   };
 
-  const res = await fetch(endpoint, {
-    method: "POST",
-    body: JSON.stringify(data)
-  });
+  try {
+    const res = await fetch(endpoint, {
+      method: "POST",
+      body: JSON.stringify(data)
+    });
 
-  const result = await res.json();
+    const result = await res.json();
 
-  if (result.status === "success") {
-    window.location.href = "thankyou.html";
-  } else {
-    alert("Submission failed");
+    if (result.status === "success") {
+      window.location.href = "thankyou.html";
+    } else {
+      alert("Submission failed");
+    }
+
+  } catch (err) {
+    alert("Error submitting form");
   }
 });
 </script>
