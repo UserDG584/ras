@@ -1,193 +1,144 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Cleaning Survey Form</title>
+  <title>Window Cleaning Survey</title>
   <style>
-    body {
-      font-family: Arial;
-      margin: 20px;
-      max-width: 650px;
-    }
-
-    h1, h2 {
-      margin-top: 25px;
-    }
-
-    input, select, textarea {
-      width: 100%;
-      padding: 10px;
-      margin: 8px 0 15px;
-      box-sizing: border-box;
-    }
-
-    label {
-      font-weight: bold;
-    }
-
-    .checkbox-group label {
-      display: block;
-      font-weight: normal;
-      margin: 5px 0;
-    }
-
-    button {
-      width: 100%;
-      padding: 14px;
-      background: green;
-      color: white;
-      border: none;
-      font-size: 16px;
-      cursor: pointer;
-    }
+    body { font-family: Arial; max-width: 800px; margin: auto; }
+    label { display:block; margin-top:10px; font-weight:bold; }
+    input, select { width:100%; padding:8px; margin-top:5px; }
+    .row { margin-bottom:15px; }
   </style>
 </head>
-
 <body>
 
-<h1>Cleaning Survey Form</h1>
+<h2>Window Cleaning Survey</h2>
 
 <form id="surveyForm">
 
-<!-- DETAILS -->
-<h2>Your Details</h2>
+<h3>Your Details</h3>
 
-<label>Full Name *</label>
-<input id="name" required>
+<label>Name</label>
+<input name="name" required>
 
-<label>Phone Number *</label>
-<input id="phone" required>
+<label>Telephone number</label>
+<input name="phone" required>
 
-<label>Email *</label>
-<input id="email" type="email" required>
+<label>Email Address</label>
+<input name="email" required>
 
-<label>Address *</label>
-<textarea id="location" required></textarea>
+<label>Full Address</label>
+<input name="address" required>
 
-<!-- PROPERTY -->
-<h2>Your Property</h2>
+<h3>Your Property</h3>
 
-<label>Property Type *</label>
-<select id="propertyType">
-  <option>Terraced</option>
-  <option>Semi-detached</option>
-  <option>Detached</option>
+<label>Property Type</label>
+<select name="style">
+  <option value="Semi">Semi-detached</option>
+  <option value="Detached">Detached</option>
+  <option value="Tera">Terraced</option>
+  <option value="Other">Other</option>
 </select>
 
-<label>Number of Windows *</label>
-<input id="windows" type="number">
+<label>Number of Windows</label>
+<input type="number" name="windows">
 
-<label>Window Pane Type *</label>
-<select id="windowType">
-  <option>Small</option>
-  <option>Medium</option>
-  <option>Large</option>
+<label>Window Size</label>
+<select name="size">
+  <option value="Sml">Small</option>
+  <option value="Medium">Medium</option>
+  <option value="LRGE">Large</option>
 </select>
 
-<label>Floors *</label>
-<input id="storeys">
+<label>Clean Type</label>
+<select name="cleanType">
+  <option value="Ext">Outside windows</option>
+  <option value="Ext + Doors">Outside windows and glass doors</option>
+  <option value="Int + Ext">Inside and outside</option>
+  <option value="All">Inside + outside + doors</option>
+</select>
+
+<label>Floors</label>
+<input type="number" name="floors">
 
 <label>Roof Windows</label>
-<select id="roofWindows">
-  <option>No</option>
-  <option>Yes</option>
+<select name="roof">
+  <option value="Yes">Yes</option>
+  <option value="No">No</option>
 </select>
 
-<label>Other Glass</label>
-<textarea id="otherGlass"></textarea>
-
-<label>Easy Access?</label>
-<select id="access">
-  <option>Yes</option>
-  <option>No</option>
+<label>Other Glass?</label>
+<select name="otherGlass" id="otherGlass">
+  <option value="No">No</option>
+  <option value="Yes">Yes</option>
 </select>
 
-<!-- CLEANING -->
-<h2>Your Cleaning Type</h2>
+<input type="text" name="otherGlassDesc" placeholder="Describe other glass (if yes)">
 
-<select id="cleaningType">
-  <option>Outside windows</option>
-  <option>Outside windows and glass doors</option>
-  <option>Inside and outside windows</option>
-  <option>Inside and outside windows + glass doors</option>
+<label>Access</label>
+<select name="access">
+  <option value="Yes">Easy access</option>
+  <option value="Ladder/Scaff">Needs ladder/scaffold</option>
 </select>
 
-<!-- EXTRAS -->
-<h2>Extras</h2>
+<label>Extras</label><br>
+<input type="checkbox" name="extras" value="None"> None<br>
+<input type="checkbox" name="extras" value="F"> Facias<br>
+<input type="checkbox" name="extras" value="S"> Soffits<br>
+<input type="checkbox" name="extras" value="xSML"> Small extra area<br>
+<input type="checkbox" name="extras" value="xM/L"> Medium/Large extra<br>
 
-<div class="checkbox-group">
-  <label><input type="checkbox" name="extras" value="Soffits"> Soffits</label>
-  <label><input type="checkbox" name="extras" value="Facias"> Facias</label>
-  <label><input type="checkbox" name="extras" value="Gutters"> Gutters</label>
-  <label><input type="checkbox" name="extras" value="Solar Panels"> Solar Panels</label>
-  <label><input type="checkbox" name="extras" value="None"> None</label>
-</div>
+<label>Last Cleaned</label>
+<input type="date" name="prev">
 
-<!-- PREVIOUS CLEAN -->
-<h2>When was your property last cleaned?</h2>
-<textarea id="lastCleaned"></textarea>
-
-<!-- FREQUENCY -->
-<h2>Frequency</h2>
-
-<select id="frequency">
-  <option>Every 4 weeks</option>
-  <option>Every 6 weeks</option>
-  <option>Every 8 weeks</option>
-  <option>Every 12 weeks</option>
+<label>Frequency</label>
+<select name="frequency">
+  <option value="+12mnths">12+ months</option>
+  <option value="6-12mnths">6-12 months</option>
+  <option value="4 weeks">4 weeks</option>
+  <option value="6 weeks">6 weeks</option>
+  <option value="8 weeks">8 weeks</option>
+  <option value="12 weeks">12 weeks</option>
 </select>
 
+<br><br>
 <button type="submit">Submit</button>
 
 </form>
 
-<!-- SCRIPT -->
 <script>
-const endpoint = "https://script.google.com/macros/s/AKfycbxKQIBlwnieqkoqFRWBEYGRD8Afu08soCiz28Jed2P4SOP24oCWw1Ot1zq3FhMsmTHxIA/exec";
-
-document.getElementById("surveyForm").addEventListener("submit", async function(e) {
+document.getElementById("surveyForm").addEventListener("submit", async function(e){
   e.preventDefault();
 
-  const extrasChecked = [...document.querySelectorAll('input[name="extras"]:checked')]
-    .map(el => el.value);
+  const form = new FormData(this);
+
+  const extras = Array.from(document.querySelectorAll('input[name="extras"]:checked'))
+    .map(x => x.value);
 
   const data = {
-    name: name.value,
-    phone: phone.value,
-    email: email.value,
-    location: location.value,
-    propertyType: propertyType.value,
-    windows: windows.value,
-    windowType: windowType.value,
-    storeys: storeys.value,
-    roofWindows: roofWindows.value,
-    otherGlass: otherGlass.value,
-    access: access.value,
-    cleaningType: cleaningType.value,
-    extras: extrasChecked,
-    lastCleaned: lastCleaned.value,
-    frequency: frequency.value
+    name: form.get("name"),
+    phone: form.get("phone"),
+    email: form.get("email"),
+    address: form.get("address"),
+    style: form.get("style"),
+    windows: form.get("windows"),
+    size: form.get("size"),
+    cleanType: form.get("cleanType"),
+    floors: form.get("floors"),
+    roof: form.get("roof"),
+    otherGlass: form.get("otherGlass"),
+    otherGlassDesc: form.get("otherGlassDesc"),
+    access: form.get("access"),
+    extras: extras,
+    prev: form.get("prev"),
+    frequency: form.get("frequency")
   };
 
-  try {
-    const res = await fetch(endpoint, {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json"
-      }
-    });
+  await fetch("https://script.google.com/macros/s/AKfycbxKQIBlwnieqkoqFRWBEYGRD8Afu08soCiz28Jed2P4SOP24oCWw1Ot1zq3FhMsmTHxIA/exec", {
+    method: "POST",
+    body: JSON.stringify(data)
+  });
 
-    const result = await res.json();
-
-    if (result.status === "success") {
-      document.body.innerHTML = "<h1>Submission complete</h1>";
-    } else {
-      alert("Submission failed");
-    }
-
-  } catch (err) {
-    alert("Error submitting form");
-  }
+  alert("Submitted successfully!");
 });
 </script>
 
